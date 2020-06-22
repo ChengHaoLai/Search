@@ -78,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                recyclerAdapter.getFilter().filter(newText);
+
                 return false;
             }
         });

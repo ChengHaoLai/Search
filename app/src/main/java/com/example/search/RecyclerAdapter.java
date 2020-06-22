@@ -4,6 +4,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,17 +13,21 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> implements Filterable {
 
     //待補充
     private static final String TAG = "RecyclerAdapter";
     int count = 0;
     List<String> stockList;
+    List<String> stockListAll;
 
     public RecyclerAdapter(List<String> stockList) {
         this.stockList = stockList;
+        this.stockListAll=new ArrayList<>(stockList);
     }
 
 
@@ -50,6 +56,44 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public int getItemCount() {
         return stockList.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return filter;
+    }
+
+    Filter filter=new Filter() {
+
+        //run on background thread
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+
+            List<String> filteredList=new ArrayList<>();
+
+            if (constraint.toString().isEmpty()){
+                filteredList.addAll(stockList);
+            }else {
+                for (String stock:stockListAll){
+                    if (stock.toLowerCase().contains(constraint.toString().toLowerCase())){
+                        filteredList.add(stock);
+                    }
+                }
+            }
+
+            FilterResults filterResults=new FilterResults();
+            filterResults.values=filteredList;
+
+            return filterResults;
+        }
+
+        //runs on ui thread
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            stockList.clear();
+            stockList.addAll((Collection<? extends String>) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -82,5 +126,5 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             Toast.makeText(v.getContext(), stockList.get(getAdapterPosition()), Toast.LENGTH_SHORT).show();
 
         }
-    }
-}
+    }//class ViewHolder
+}//class RecyclerAdapter
