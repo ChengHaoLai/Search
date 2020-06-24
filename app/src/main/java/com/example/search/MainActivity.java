@@ -41,27 +41,27 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(dividerItemDecoration);
 
         //位置邏輯待釐清
-        stockList.add("台　泥 (1101)");
-        stockList.add("亞　泥 (1102)");
-        stockList.add("統　一 (1216)");
-        stockList.add("台　塑 (1301)");
-        stockList.add("南　亞 (1303)");
-        stockList.add("台　化 (1326)");
-        stockList.add("遠東新 (1402)");
-        stockList.add("中　鋼 (2002)");
-        stockList.add("正　新 (2105)");
-        stockList.add("和泰車 (2207)");
-        stockList.add("裕日車 (2227)");
-        stockList.add("光寶科 (2301)");
-        stockList.add("聯　電 (2303)");
-        stockList.add("台達電 (2308)");
-        stockList.add("鴻　海 (2317)");
-        stockList.add("國　巨 (2327)");
-        stockList.add("台積電 (2330)");
-        stockList.add("佳世達 (2352)");
-        stockList.add("華　碩 (2357)");
-        stockList.add("廣　達 (2382)");
-        stockList.add("研　華 (2395)");
+        stockList.add("1101TN");
+        stockList.add("1102YN");
+        stockList.add("1216TY");
+        stockList.add("1301TS");
+        stockList.add("1303NY");
+        stockList.add("1326TH");
+        stockList.add("1402UDS");
+        stockList.add("2002CK");
+        stockList.add("2105CS");
+        stockList.add("2207HT");
+        stockList.add("2227UZ");
+        stockList.add("2301BG");
+        stockList.add("2303LD");
+        stockList.add("2308TD");
+        stockList.add("2317HH");
+        stockList.add("2327GG");
+        stockList.add("2330TGD");
+        stockList.add("2352GSD");
+        stockList.add("2357HS");
+        stockList.add("2382GD");
+        stockList.add("2395YH");
 
     }
 
